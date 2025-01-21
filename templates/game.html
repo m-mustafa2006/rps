@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+    <h2>Welcome, {{ session['username'] }}!</h2>
+    <h3>Make your choice:</h3>
+    <form method="POST">
+        <div class="choices">
+            <button type="submit" name="choice" value="rock" class="choice-button">
+                <img src="{{ url_for('static', filename='images/rock.png') }}" alt="Rock" class="choice-img">
+            </button>
+            <button type="submit" name="choice" value="paper" class="choice-button">
+                <img src="{{ url_for('static', filename='images/paper.png') }}" alt="Paper" class="choice-img">
+            </button>
+            <button type="submit" name="choice" value="scissors" class="choice-button">
+                <img src="{{ url_for('static', filename='images/scissors.png') }}" alt="Scissors" class="choice-img">
+            </button>
+        </div>        
+    </form>
+    {% if result %}
+    <section class="results-section"></section>
+    <h3>Result: {{ result }}</h3>
+    <div class="choice">
+    <p>You chose:</p>
+    <p> 
+        <img src="{{ url_for('static', filename='images/' + user_choice + '.png') }}" alt="{{ user_choice }}" width="100">
+    </div>
+    <div class="choice">
+    <p>RPS chose:</p>
+        <img src="{{ url_for('static', filename='images/' + computer_choice + '.png') }}" alt="{{ computer_choice }}" width="100">
+    </div>
+    </p>
+    
+    {% endif %}
+    <a href="{{ url_for('logout') }}">Logout</a>
+</div>
+{% endblock %}
